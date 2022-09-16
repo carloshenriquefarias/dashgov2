@@ -3,6 +3,7 @@ import { Header } from "../../components/Header/Index";
 import { SideBar } from "../../components/Sidebar/index";
 import { Pagination } from "../../components/Pagination";
 import {RiAddLine, RiPencilLine, RiDeleteBin3Line } from 'react-icons/ri'
+import Link from 'next/link'
 
 export default function UserList(){
 
@@ -21,15 +22,19 @@ export default function UserList(){
                     <Flex mb="8" justify="space-between" align="center">
                         <Heading size="lg" fontWeight="normal">Usuários</Heading>
                         {/* as = a => converte o botao como link para outra pagina */}
-                        <Button 
-                            as="a" 
-                            size="sm" 
-                            fontSize="sm" 
-                            colorScheme="pink"
-                            leftIcon={<Icon as={RiAddLine}fontSize="20"/>}
-                        > 
-                            Criar Novo
-                        </Button>
+                        
+                        <Link href="/users/create" passHref>
+                            <Button 
+                                as="a" 
+                                size="sm" 
+                                fontSize="sm" 
+                                colorScheme="pink"
+                                leftIcon={<Icon as={RiAddLine}fontSize="20"/>}
+                            > 
+                                Criar Novo
+                            </Button>
+                        </Link>
+                        
                     </Flex>
                     <Table colorScheme="whiteAlpha" width="100%">
                         <Thead>
@@ -43,7 +48,7 @@ export default function UserList(){
                             </Tr>
                         </Thead> 
                         <Tbody>
-                            <Tr px={["4","6"]}>
+                            <Tr px={["4","6"]} _hover={{bg: 'gray.700'}}>
                                 <Td><Checkbox colorScheme="pink"/> </Td>
                                 <Td>
                                     <Box>
@@ -74,7 +79,7 @@ export default function UserList(){
                                     </Button>
                                 </Td>
                             </Tr>
-                            <Tr px={["4","6"]}>
+                            <Tr px={["4","6"]} _hover={{bg: 'gray.700'}}>
                                 <Td><Checkbox colorScheme="pink"/> </Td>
                                 <Td>
                                     <Box>
@@ -105,7 +110,7 @@ export default function UserList(){
                                     </Button>
                                 </Td>
                             </Tr>
-                            <Tr px={["4","6"]}>
+                            <Tr px={["4","6"]} _hover={{bg: 'gray.700'}}>
                                 <Td><Checkbox colorScheme="pink"/> </Td>
                                 <Td>
                                     <Box>
