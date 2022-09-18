@@ -34,9 +34,7 @@ export default function SignIn() {
           </Stack>
         <Button type='submit' mt="6" colorScheme="pink">Entrar</Button>
         </Flex>
-        <div>
-          bug noi git?
-        </div>
+        
     </Flex>
   )
 }
