@@ -24,12 +24,12 @@ const createUserFormSchema = yup.object().shape({
 
 export default function CreateUser(){
 
-    const {register, handleSubmit, formState, errors} = useForm({
+    const {register, handleSubmit, formState, errors} = useForm({ 
         resolver: yupResolver(createUserFormSchema)
     })
 
     const handleCreateUser: SubmitHandler<CreateUserFormData> = async (values) => {
-        await new Promise((resolve => setTimeout(resolve, 2000));
+        await new Promise((resolve => setTimeout(resolve, 2000)));
 
         console.log(values);        
     }
