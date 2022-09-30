@@ -120,8 +120,8 @@ export default function UserList(){
                             </Table>
                             <Pagination/>
                         </>
-                    )}
-
+                    )} 
+                    <div></div>                              
                 </Box>
             </Flex>
         </Box>
