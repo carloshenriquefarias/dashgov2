@@ -7,29 +7,13 @@ import Link from 'next/link'
 import { useEffect } from "react";
 import {useQuery} from 'react-query'
 import {api} from '../../services/api'
+import {useUsers} from '../../services/hooks/useUsers'
 
 
 export default function UserList(){
 
-    const {data, isLoading, isFetching, error} = useQuery('users', async () =>{
-        const {data} = await api.get('users')
-        // const data = await response.json()
-
-        const users = data.users.map(user => {
-            return{
-                id: user.id,
-                name: user.name,
-                email: user.email,
-                createdAt: new Date(user.createdAt).toLocaleDateString('pt-BR', {
-                    day: '2-digit',
-                    month: 'long',
-                    year:'numeric'
-                })
-            };            
-        });
-
-        return users;       
-    })
+    const {data, isLoading, isFetching, error} = useUsers()
+    
 
     const isWideVersion = useBreakpointValue({
         base: false,
@@ -95,7 +79,7 @@ export default function UserList(){
                                                         <Text fontSize="sm" color="gray.300">{user.email}</Text>
                                                     </Box>
                                                 </Td>
-                                                { isWideVersion && <Td>{user.createdAt}</Td>}
+                                                { isWideVersion && <Td>{user.created_at}</Td>}
                                                 <Td>
                                                     <Button 
                                                         as="a" 
@@ -123,7 +107,12 @@ export default function UserList(){
                                                               
                                 </Tbody>
                             </Table>
-                            <Pagination/>
+                            <Pagination
+                                totalCountofRegisters={200}
+                                currentPage={5}
+                                onPageChange={() => {}}
+                    
+                            />
                         </>
                     )}
 
