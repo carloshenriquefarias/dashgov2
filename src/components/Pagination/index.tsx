@@ -1,4 +1,4 @@
-import { Stack, Box } from '@chakra-ui/react'
+import { Stack, Box, Text} from '@chakra-ui/react'
 import { PaginationItem } from './PaginationItem';
 
 interface PaginationProps{
@@ -47,27 +47,30 @@ export function Pagination({
                 
                 {/* Se a pagina atual e maior que 1 + siblingsCount coloque a primeira pagina */}
                 {currentPage > (1 + siblingsCount) && (
-                    <PaginationItem number={1} />
+                    <>
+                        <PaginationItem number={1} onPageChange={onPageChange} />
+                        {currentPage > (2 + siblingsCount) && <Text>...</Text>}
+                    </>
+                    
                 )}
 
                 {previousPage.length > 0 && previousPage.map(page =>{
-                    return <PaginationItem key={page} number={page} />
+                    return <PaginationItem onPageChange={onPageChange} key={page} number={page} />
                 })}
 
-                <PaginationItem number={currentPage} isCurrent/>
+                <PaginationItem onPageChange={onPageChange} number={currentPage} isCurrent/>
 
                 {nextPage.length > 0 && nextPage.map(page =>{
-                    return <PaginationItem key={page} number={page} />
+                    return <PaginationItem onPageChange={onPageChange} key={page} number={page} />
                 })}
 
                 {(currentPage + siblingsCount) < lastpage && (
-                    <PaginationItem number={lastpage} />
+                    <>
+                        {(currentPage + 1 + siblingsCount) < lastpage && <Text>...</Text>}
+                        <PaginationItem onPageChange={onPageChange} number={lastpage} />                    
+                    </>                    
                 )}
-
-                {/* <PaginationItem number={2} />
-                <PaginationItem number={3} />
-                <PaginationItem number={4} />
-                <PaginationItem number={5} />                */}
+             
             </Stack>
             
         </Stack>

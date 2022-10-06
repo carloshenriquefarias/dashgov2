@@ -4,7 +4,7 @@ import { SideBar } from "../../components/Sidebar/index";
 import { Pagination } from "../../components/Pagination";
 import {RiAddLine, RiPencilLine, RiDeleteBin3Line } from 'react-icons/ri'
 import Link from 'next/link'
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {useQuery} from 'react-query'
 import {api} from '../../services/api'
 import {useUsers} from '../../services/hooks/useUsers'
@@ -12,7 +12,9 @@ import {useUsers} from '../../services/hooks/useUsers'
 
 export default function UserList(){
 
-    const {data, isLoading, isFetching, error} = useUsers()
+    const [page, setPage] = useState(1);
+
+    const {data, isLoading, isFetching, error} = useUsers(page)
     
 
     const isWideVersion = useBreakpointValue({
@@ -69,7 +71,7 @@ export default function UserList(){
                                     </Tr>
                                 </Thead> 
                                 <Tbody>
-                                    {data.map(user =>{
+                                    {data.users.map(user =>{
                                         return (
                                             <Tr key={user.id} px={["4","6"]} _hover={{bg: 'gray.700'}}>
                                                 <Td><Checkbox colorScheme="pink"/> </Td>
@@ -108,9 +110,9 @@ export default function UserList(){
                                 </Tbody>
                             </Table>
                             <Pagination
-                                totalCountofRegisters={200}
-                                currentPage={5}
-                                onPageChange={() => {}}
+                                totalCountofRegisters={data.totalCount}
+                                currentPage={page}
+                                onPageChange={setPage}
                     
                             />
                         </>
