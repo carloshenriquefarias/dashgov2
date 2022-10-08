@@ -5,7 +5,7 @@ interface PaginationProps{
     totalCountofRegisters: number;
     registerPerPage?: number;
     currentPage?: number;
-    onPageChange?: (page: number) => void;
+    onPageChange: (page: number) => void;
 }
 
 const siblingsCount = 1;
