@@ -52,7 +52,9 @@ export function makeServer(){
                 )
             });
 
-            this.post('/users')
+            this.post('/users');
+
+            this.get('/teste');
             //Criando as rotas no miragejs
 
             this.namespace = '';
