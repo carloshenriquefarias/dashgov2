@@ -4,6 +4,7 @@ import { SideBar } from "../../components/Sidebar/index";
 import { Input } from "../../components/Form/Input";
 import Link from 'next/link'
 
+
 import * as yup from 'yup'
 import { SubmitHandler, useForm } from "react-hook-form";
 import {yupResolver } from "@hookform/resolvers/yup"
@@ -24,7 +25,7 @@ const createUserFormSchema = yup.object().shape({
 
 export default function CreateUser(){
 
-    const {register, handleSubmit, formState: { errors, isSubmitting }} = useForm({ 
+    const {register, handleSubmit, formState, formState: { errors, isSubmitting }} = useForm({ 
         resolver: yupResolver(createUserFormSchema)
     })
 
@@ -60,7 +61,7 @@ export default function CreateUser(){
                             <Link href="/users" passHref>
                                 <Button colorScheme="whiteAlpha">Cancelar</Button>
                             </Link>                            
-                            <Button type="submit" colorScheme="pink" isLoading={formState}>Salvar</Button>
+                            <Button type="submit" colorScheme="pink" isLoading={formState.isSubmitting}>Salvar</Button>
                         </HStack>
                     </Flex>
 
